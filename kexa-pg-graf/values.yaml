@@ -1,0 +1,31 @@
+postgresql:
+  host: postgresql.default.svc.cluster.local
+  database: your_database_name
+  username: postgres
+  password: your_password
+  auth:
+    postgresPassword: my_postgres_password
+  primary:
+    service:
+      port: 5432
+
+grafana:
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: PostgreSQL
+          type: postgres
+          access: proxy
+          orgId: 1
+          url: postgresql-postgresql.default.svc.cluster.local:5432
+          user: postgres
+          password: my_postgres_password
+          database: postgres
+          jsonData:
+            sslmode: "disable"
+            postgresVersion: 1200
+            timescaledb: true
+
+kexascript:
+  image: myusername/my-typescript-script:latest
