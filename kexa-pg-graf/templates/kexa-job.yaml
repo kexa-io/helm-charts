@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "chart.fullname" . }}-script
+spec:
+  template:
+    spec:
+      containers:
+      - name: kexascript
+        image: {{ .Values.typescriptScript.image }}
+        command: ["pnpm", "run", "start"]
+        env:
+          - name: POSTGRES_HOST
+            value: "{{ .Values.postgresql.host }}"
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "chart.fullname" . }}-postgresql
+                key: postgresql-username
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ include "chart.fullname" . }}-postgresql
+                key: postgresql-password
+          - name: POSTGRES_DB
+            value: "{{ .Values.postgresql.database }}"
+        resources:
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+      restartPolicy: Never
