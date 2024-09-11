@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards
+  labels:
+    grafana_dashboard: "true"
+data:
+  KexaAddons.json: |-
+    {{ .Files.Get "files/dashboards/KexaAddons.json" | nindent 4 }}
+  KexaKubernetesPodConsumption.json: |-
+    {{ .Files.Get "files/dashboards/KexaKubernetesPodConsumption.json" | nindent 4 }}
+  KexaMain.json: |-
+    {{ .Files.Get "files/dashboards/KexaMain.json" | nindent 4 }}

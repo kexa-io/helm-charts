@@ -1,3 +1,7 @@
+appName: kexa-helm
+
+namespace: default
+
 postgresql:
   host: postgresql.default.svc.cluster.local
   database: your_database_name
@@ -8,6 +12,8 @@ postgresql:
   primary:
     service:
       port: 5432
+
+      
 
 grafana:
   datasources:
@@ -26,6 +32,20 @@ grafana:
             sslmode: "disable"
             postgresVersion: 1200
             timescaledb: true
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      defaultNamespace: default
+  volumeMounts:
+    - name: dashboards
+      mountPath: /var/lib/grafana/dashboards
+  volumes:
+    - name: dashboards
+      configMap:
+        name: grafana-dashboards
 
-kexascript:
-  image: myusername/my-typescript-script:latest
+
+kexaScript:
+  image: innovtech/kexa
+  tag: latest

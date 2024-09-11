@@ -1,8 +1,9 @@
 apiVersion: v2
-name: kexa-pg-graf
+name: "{{ .Values.appName }}-grafana-postgres"
 description: A Helm chart that installs PostgreSQL and Grafana
 version: 0.1.0
 appVersion: "1.0"
+icon: https://kexa.io/kexa-no-background-color.png
 
 dependencies:
   - name: postgresql
