@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/kexa-io/helm-charts/compare/v1.1.1...v1.1.2) (2024-09-12)
+
+
+### Bug Fixes
+
+* add readme ([2ab58ed](https://github.com/kexa-io/helm-charts/commit/2ab58ed9cb66e1923f731a046059428eea784351))
+* Kubernetes & Workspace secrets ok ([fb67c1d](https://github.com/kexa-io/helm-charts/commit/fb67c1d79b2c3fb13edc0acd07b6c664c9f4f7b2))
+
 ## [1.1.1](https://github.com/kexa-io/helm-charts/compare/v1.1.0...v1.1.1) (2024-09-12)
 
 
