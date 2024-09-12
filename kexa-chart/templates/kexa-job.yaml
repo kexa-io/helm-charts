@@ -46,7 +46,7 @@ spec:
         configMap:
           name: kexa-configuration-files
       - name: kexa-env-volume
-        configMap:
-          name: kexa-environment-files
+        secret:
+          secretName: kexa-environment-secret
       - name: writable-app-volume
         emptyDir: {}

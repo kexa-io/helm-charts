@@ -1,5 +1,7 @@
 ------ NOTES -------
 
+#### Grafana Dashboard ####
+
 # Forwarding port
 kubectl port-forward svc/kexa-helm-grafana 8080:80
 
@@ -11,4 +13,13 @@ kubectl get secret --namespace default kexa-helm-grafana -o jsonpath="{.data.adm
 
 # Login with 'admin' and password you got
 
--------------
+
+#### Kexa Logs ####
+
+# Follow logs from job
+kubectl logs job/kexa-helm-job -f
+
+
+kubectl create secret generic kexa-environment-secret --from-file=.env=.env
+
+---------------------
