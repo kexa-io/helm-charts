@@ -1,5 +1,5 @@
 apiVersion: v2
-name: "{{ .Values.appName }}-grafana-postgres"
+name: "{{ .Values.appname }}-grafana-postgres"
 description: A Helm chart that installs PostgreSQL and Grafana
 version: 0.1.0
 appVersion: "1.0"

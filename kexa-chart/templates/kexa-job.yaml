@@ -1,0 +1,52 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Values.appname }}-job"
+spec:
+  template:
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      containers:
+      - name: "{{ .Values.appname }}-job-container"
+        image: "{{ .Values.kexaScript.image }}:{{ .Values.kexaScript.tag }}"
+        command: ["pnpm", "run", "start:nobuild"]
+        env:
+          - name: POSTGRES_HOST
+            value: "{{ .Values.postgresql.host }}"
+          - name: POSTGRES_USER
+            value: "{{ .Values.postgresql.username }}"
+          - name: POSTGRES_PASSWORD
+            value: "{{ .Values.postgresql.auth.postgresPassword }}"
+          - name: POSTGRES_DB
+            value: "{{ .Values.postgresql.database }}"
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "2048Mi"
+          requests:
+            cpu: "500m"
+            memory: "1024Mi"
+        volumeMounts:
+          - name: kexa-config-volume
+            mountPath: /app/config/default.json
+            subPath: default.json
+            readOnly: false
+          - name: kexa-env-volume
+            mountPath: /app/.env
+            subPath: .env
+            readOnly: false
+          - name: writable-app-volume
+            mountPath: /app/config
+      restartPolicy: Never
+      volumes:
+      - name: kexa-config-volume
+        configMap:
+          name: kexa-configuration-files
+      - name: kexa-env-volume
+        configMap:
+          name: kexa-environment-files
+      - name: writable-app-volume
+        emptyDir: {}
