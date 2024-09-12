@@ -1,4 +1,4 @@
-appName: kexa-helm
+appname: kexa-helm
 
 namespace: default
 
@@ -49,3 +49,15 @@ grafana:
 kexaScript:
   image: innovtech/kexa
   tag: latest
+  volumeMounts:
+    - name: configuration-files
+      mountPath: /app/config
+    - name: environment-files
+      mountPath: /app/Kexa
+  volumes:
+    - name: configuration-files
+      configMap:
+        name: kexa-configuration-files
+    - name: environment-files
+      configMap:
+        name: kexa-environment-files

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kexa-environment-files
+data:
+  .env: |-
+    {{ .Files.Get "files/environment/.env" | nindent 4 }}
