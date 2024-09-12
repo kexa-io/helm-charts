@@ -2,4 +2,5 @@ kexa-chart/files/environment/*
 kexa-chart/files/config/*
 node_modules/*
 ./*.yaml
+*.yaml
 .env
