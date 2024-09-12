@@ -19,7 +19,4 @@ kubectl get secret --namespace default kexa-helm-grafana -o jsonpath="{.data.adm
 # Follow logs from job
 kubectl logs job/kexa-helm-job -f
 
-
-kubectl create secret generic kexa-environment-secret --from-file=.env=.env
-
 ---------------------
