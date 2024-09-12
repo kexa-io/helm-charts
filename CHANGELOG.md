@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/kexa-io/helm-charts/compare/v1.1.0...v1.1.1) (2024-09-12)
+
+
+### Bug Fixes
+
+* env as secret ([1e122ce](https://github.com/kexa-io/helm-charts/commit/1e122ce51f6e95d78cf2e5d4fdd8b32c69aa818f))
+
 # [1.1.0](https://github.com/kexa-io/helm-charts/compare/v1.0.0...v1.1.0) (2024-09-12)
 
 
