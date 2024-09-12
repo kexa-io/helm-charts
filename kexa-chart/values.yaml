@@ -2,6 +2,9 @@ appname: kexa-helm
 
 namespace: default
 
+kubernetesAddon:
+  enabled: true
+
 postgresql:
   host: postgresql.default.svc.cluster.local
   database: your_database_name
@@ -52,12 +55,7 @@ kexaScript:
   volumeMounts:
     - name: configuration-files
       mountPath: /app/config
-    - name: environment-files
-      mountPath: /app/Kexa
   volumes:
     - name: configuration-files
       configMap:
         name: kexa-configuration-files
-    - name: environment-files
-      configMap:
-        name: kexa-environment-files
