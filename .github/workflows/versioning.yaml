@@ -20,7 +20,6 @@ jobs:
       - name: prep plugins
         run: |
           npm install -D @semantic-release/changelog @semantic-release/git @semantic-release/exec
-          npm run build
       - name: run semantic release
         id: ver
         run: npx semantic-release   
