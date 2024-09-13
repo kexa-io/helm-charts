@@ -6,27 +6,35 @@ on:
     - cron: '0 0 * * 1'
 
 jobs:
-  download-and-overwrite:
+  update-dashboards:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Current Repository
         uses: actions/checkout@v4
+        with:
+          path: current-repo
 
       - name: Checkout Kexa Dashboards Repository
         uses: actions/checkout@v4
         with:
           repository: 'kexa-io/grafana-dashboards'
-          path: './'
+          path: external-repo
+
+      - name: Create Target Directory
+        run: |
+          mkdir -p current-repo/kexa-chart/files/dashboards
+        shell: bash
 
       - name: Copy Files
         run: |
-          cp -R ./*.json ./kexa-chart/files/dashboards
+          cp -f external-repo/*.json current-repo/kexa-chart/files/dashboards/
         shell: bash
 
       - name: Commit changes
         run: |
+          cd current-repo
           git config --global user.name "Adrien E"
           git config --global user.email "adrien.eppling@supinfo.com"
-          git add ./kexa-chart/files/dashboards/
+          git add kexa-chart/files/dashboards/
           git commit -m "fix: Get new dashboards"
           git push
