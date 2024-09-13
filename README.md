@@ -1,6 +1,8 @@
 # helm-charts
 Helm charts to install &amp; run Kexa with postgres/mariaDB and Grafana
 
+If you do not want to use the cronjob, and just need a one time run:
+    - Replace kexa-chart/templates/kexa-store.yaml with kexa-chart/store/kexa-store.yaml
 
 ### Create your secrets
 
