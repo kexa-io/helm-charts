@@ -1,3 +1,11 @@
+## [1.1.3](https://github.com/kexa-io/helm-charts/compare/v1.1.2...v1.1.3) (2024-09-13)
+
+
+### Bug Fixes
+
+* cicd get new dashboards ([6bd0704](https://github.com/kexa-io/helm-charts/commit/6bd07044b91fc2de543b370c003f4d1323cd5d00))
+* multiple kubernetes credentials ok ([36c8ea8](https://github.com/kexa-io/helm-charts/commit/36c8ea8e51ef9d79d36dc5aa7de5f64eefb928d5))
+
 ## [1.1.2](https://github.com/kexa-io/helm-charts/compare/v1.1.1...v1.1.2) (2024-09-12)
 
 
