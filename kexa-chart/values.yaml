@@ -9,15 +9,34 @@ kubernetesAddon: # Enable or disable kubernetes addon
 
 
 postgresql:
-  host: postgresql.default.svc.cluster.local
-  database: your_database_name
-  username: postgres
-  password: your_password
+  postgresPassword: my_postgres_password 
+  username: kexa_postgres_user
+  password: my_postgres_password
+  database: kexa_export_database
+  host: my-postgresql.default.svc.cluster.local
+  fullnameOverride: "my-postgresql"
+  connectionString: "postgresql://kexa_postgres_user:my-postgresql.default.svc.cluster.local:5432/kexa_export_database"
   auth:
     postgresPassword: my_postgres_password
+    username: kexa_postgres_user
+    password: my_postgres_password
+    database: kexa_export_database
+  service:
+    port: 5432
   primary:
     service:
       port: 5432
+    initdb:
+      scripts:
+        init.sql: |
+          CREATE DATABASE kexa_export_database;
+          CREATE USER grafanareader WITH PASSWORD 'password';
+          CREATE USER kexa_postgres_user WITH PASSWORD 'my_postgres_password';
+          GRANT USAGE ON SCHEMA schema TO grafanareader;
+          GRANT SELECT ON schema.table TO grafanareader;
+  persistence:
+    enabled: true
+    size: 10Gi
 
 
 grafana:
@@ -29,10 +48,10 @@ grafana:
           type: postgres
           access: proxy
           orgId: 1
-          url: postgresql-postgresql.default.svc.cluster.local:5432
-          user: postgres
+          url: my-postgresql.default.svc.cluster.local:5432
+          user: kexa_postgres_user
           password: my_postgres_password
-          database: postgres
+          database: kexa_export_database
           jsonData:
             sslmode: "disable"
             postgresVersion: 1200
@@ -61,3 +80,8 @@ kexaScript:
     - name: configuration-files
       configMap:
         name: kexa-configuration-files
+  saveAddon:
+    type: postgres
+    name: "Clever Cloud Postgresql"
+    urlName: postgres_connect
+    description: "Database to save the data (clever-cloud)"

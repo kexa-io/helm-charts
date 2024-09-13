@@ -1,0 +1,59 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Values.appname }}-job"
+spec:
+  template:
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      containers:
+      - name: "{{ .Values.appname }}-job-container"
+        image: "{{ .Values.kexaScript.image }}:{{ .Values.kexaScript.tag }}"
+        command: ["pnpm", "run", "start:nobuild"]
+        env:
+          - name: POSTGRES_STRING
+            valueFrom:
+              secretKeyRef:
+                name: kexa-secret
+                key: postgres-connection-string
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "2048Mi"
+          requests:
+            cpu: "500m"
+            memory: "1024Mi"
+        volumeMounts:
+          - name: kexa-config-volume
+            mountPath: /app/config/default.json
+            subPath: default.json
+            readOnly: false
+          - name: kexa-env-volume
+            mountPath: /app/.env
+            subPath: .env
+            readOnly: false
+          - name: writable-app-volume
+            mountPath: /app/config
+{{- if .Values.kubernetesAddon.enabled }}
+          - name: kubeconfig-volume
+            mountPath: "/app/{{ .Values.kubernetesAddon.mountPath }}"
+            readOnly: false
+{{- end }}
+      restartPolicy: Never
+      volumes:
+      - name: kexa-config-volume
+        configMap:
+          name: kexa-configuration-files
+      - name: kexa-env-volume
+        secret:
+          secretName: kexa-environment-secret
+      - name: writable-app-volume
+        emptyDir: {}
+{{- if .Values.kubernetesAddon.enabled }}
+      - name: kubeconfig-volume
+        secret:
+          secretName: kubeconfig-secret
+{{- end }}
