@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/kexa-io/helm-charts/compare/v1.1.6...v1.1.7) (2024-09-13)
+
+
+### Bug Fixes
+
+* checkout current ([a29c0b0](https://github.com/kexa-io/helm-charts/commit/a29c0b0d127efc7440d52e0771c51e44409d9c8f))
+
 ## [1.1.6](https://github.com/kexa-io/helm-charts/compare/v1.1.5...v1.1.6) (2024-09-13)
 
 
