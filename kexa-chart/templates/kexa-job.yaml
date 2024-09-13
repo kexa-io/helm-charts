@@ -42,8 +42,7 @@ spec:
             mountPath: /app/config
 {{- if .Values.kubernetesAddon.enabled }}
           - name: kubeconfig-volume
-            mountPath: /app/kubeconfig.yaml
-            subPath: kubeconfig.yaml
+            mountPath: "/app/{{ .Values.kubernetesAddon.mountPath }}"
             readOnly: false
 {{- end }}
       restartPolicy: Never
