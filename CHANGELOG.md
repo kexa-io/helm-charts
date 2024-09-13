@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/kexa-io/helm-charts/compare/v1.1.7...v1.2.0) (2024-09-13)
+
+
+### Bug Fixes
+
+* ci ok need token ([38e66aa](https://github.com/kexa-io/helm-charts/commit/38e66aa2e561e5196a156320b3aad8709cc4c34d))
+
+
+### Features
+
+* cronjob run & secrets ([aa0d31c](https://github.com/kexa-io/helm-charts/commit/aa0d31ce1e87d5b92ae3226add569d9ef9729887))
+
 ## [1.1.7](https://github.com/kexa-io/helm-charts/compare/v1.1.6...v1.1.7) (2024-09-13)
 
 
