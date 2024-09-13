@@ -2,8 +2,11 @@ appname: kexa-helm
 
 namespace: default
 
-kubernetesAddon:
+kubernetesAddon: # Enable or disable kubernetes addon
   enabled: true
+  mountPath: kubernetesconfigurations # where to mount: this has to be the same as the path in your .env file
+                                      # ex: KUBECONFIG=./kubernetesconfigurations/kubeconfig.yaml
+
 
 postgresql:
   host: postgresql.default.svc.cluster.local
@@ -16,7 +19,6 @@ postgresql:
     service:
       port: 5432
 
-      
 
 grafana:
   datasources:

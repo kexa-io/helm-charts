@@ -1,0 +1,32 @@
+name: Get Dashboards updates
+
+on: 
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1'
+
+jobs:
+  download-and-overwrite:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Current Repository
+        uses: actions/checkout@v4
+
+      - name: Checkout Kexa Dashboards Repository
+        uses: actions/checkout@v4
+        with:
+          repository: 'kexa-io/grafana-dashboards'
+          path: './'
+
+      - name: Copy Files
+        run: |
+          cp -R ./*.json ./kexa-chart/files/dashboards/
+        shell: bash
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "Adrien E"
+          git config --global user.email "adrien.eppling@supinfo.com"
+          git add ./kexa-chart/files/dashboards/
+          git commit -m "fix: Get new dashboards"
+          git push
