@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/kexa-io/helm-charts/compare/v1.1.3...v1.1.4) (2024-09-13)
+
+
+### Bug Fixes
+
+* path in cicd ([ebc17b1](https://github.com/kexa-io/helm-charts/commit/ebc17b13135dd5502e97657dbdf8b1482e6371bb))
+
 ## [1.1.3](https://github.com/kexa-io/helm-charts/compare/v1.1.2...v1.1.3) (2024-09-13)
 
 
