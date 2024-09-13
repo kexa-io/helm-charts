@@ -1,15 +1,16 @@
 ------ NOTES -------
 
-#### Grafana Dashboard ####
 
-# Forwarding port
-kubectl port-forward svc/kexa-helm-grafana 8080:80
+#### Grafana Dashboard ####
 
 # Get Grafana's hashed password
 kubectl get secret --namespace default kexa-helm-grafana -o jsonpath="{.data.admin-password}"
 
 # Decode hashed password to get the password
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YOUR_HASHED_PASSWORD_HERE"))
+
+# Forwarding port
+kubectl port-forward svc/kexa-helm-grafana 8080:80
 
 # Login with 'admin' and password you got
 
@@ -18,5 +19,9 @@ kubectl get secret --namespace default kexa-helm-grafana -o jsonpath="{.data.adm
 
 # Follow logs from job
 kubectl logs job/kexa-helm-job -f
+
+# Find logs from cronjob
+kubectl get jobs
+kubectl logs jobs/kexa-helm-job-XXXXXX -f
 
 ---------------------

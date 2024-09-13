@@ -30,11 +30,6 @@ jobs:
           cp -f external-repo/*.json current-repo/kexa-chart/files/dashboards/
         shell: bash
 
-      - name: Checkout Current Repository
-        uses: actions/checkout@v4
-        with:
-          path: current-repo
-          
       - name: Configure Git
         run: |
           git config --global user.name "Adrien E"
