@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/kexa-io/helm-charts/compare/v1.1.5...v1.1.6) (2024-09-13)
+
+
+### Bug Fixes
+
+* add gh token ([9e3fed0](https://github.com/kexa-io/helm-charts/commit/9e3fed028b25cd17fa5b8171c6e2e13d3555e0aa))
+
 ## [1.1.5](https://github.com/kexa-io/helm-charts/compare/v1.1.4...v1.1.5) (2024-09-13)
 
 
