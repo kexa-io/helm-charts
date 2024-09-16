@@ -38,7 +38,7 @@ jobs:
 
       - name: Copy Files
         run: |
-          cp -rf external-repo/*.yaml current-repo/kexa-chart/files/rules/
+          cp -rf external-repo/* current-repo/kexa-chart/files/rules/
         shell: bash
 
       - name: List Target Directory
