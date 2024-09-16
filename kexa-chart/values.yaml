@@ -54,7 +54,7 @@ grafana:
           database: kexa_export_database
           jsonData:
             sslmode: "disable"
-            postgresVersion: 1200
+            postgresVersion: 1500
             timescaledb: true
   sidecar:
     dashboards:
