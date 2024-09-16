@@ -1,4 +1,4 @@
-name: Get Dashboards updates
+name: Get Rules updates
 
 on: 
   push:
@@ -9,7 +9,7 @@ on:
     - cron: '0 0 * * 1'
 
 jobs:
-  update-dashboards:
+  update-rules:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Current Repository
@@ -17,10 +17,10 @@ jobs:
         with:
           path: current-repo
 
-      - name: Checkout Kexa Dashboards Repository
+      - name: Checkout Kexa Rules Repository
         uses: actions/checkout@v4
         with:
-          repository: 'kexa-io/grafana-dashboards'
+          repository: 'kexa-io/public-rules'
           path: external-repo
 
       - name: List Files in Repositories
@@ -33,18 +33,18 @@ jobs:
 
       - name: Create Target Directory
         run: |
-          mkdir -p current-repo/kexa-chart/files/dashboards
+          mkdir -p current-repo/kexa-chart/files/rules
         shell: bash
 
       - name: Copy Files
         run: |
-          cp -f external-repo/*.json current-repo/kexa-chart/files/dashboards/
+          cp -rf external-repo/*.yaml current-repo/kexa-chart/files/rules/
         shell: bash
 
       - name: List Target Directory
         run: |
           echo "Files in target directory after copy:"
-          ls -R current-repo/kexa-chart/files/dashboards/
+          ls -R current-repo/kexa-chart/files/rules/
         shell: bash
 
 
@@ -56,8 +56,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add kexa-chart/files/dashboards/
-          git commit -m "Get new dashboards"
+          git add kexa-chart/files/rules/
+          git commit -m "Get new rules"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
