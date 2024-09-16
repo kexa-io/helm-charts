@@ -3,6 +3,18 @@
 
 ### Bug Fixes
 
+* dash updates debugging ([e5fc9f9](https://github.com/kexa-io/helm-charts/commit/e5fc9f9f1f8236b904ca6d554cfccef7b4713f21))
+* Get new dashboards ([761df7a](https://github.com/kexa-io/helm-charts/commit/761df7a1644ee5527bd5d61498b808fb01769a40))
+* Get new dashboards ([aa8419a](https://github.com/kexa-io/helm-charts/commit/aa8419a316801fb3ab1d739bb8009d84560f7632))
+* just a ci trigger & readme add ([709597b](https://github.com/kexa-io/helm-charts/commit/709597b980370314fdf0de4a8b59e7f9adfb00ee))
+* rules CICD ([3c4d68f](https://github.com/kexa-io/helm-charts/commit/3c4d68f5f710cb5df51749a896c66b202031f3a7))
+* test chart releaser ([e0e069c](https://github.com/kexa-io/helm-charts/commit/e0e069c358886615a0df79c97f6c8ab83f3754d5))
+
+## [1.2.1](https://github.com/kexa-io/helm-charts/compare/v1.2.0...v1.2.1) (2024-09-16)
+
+
+### Bug Fixes
+
 * Get new dashboards ([aa8419a](https://github.com/kexa-io/helm-charts/commit/aa8419a316801fb3ab1d739bb8009d84560f7632))
 * just a ci trigger & readme add ([709597b](https://github.com/kexa-io/helm-charts/commit/709597b980370314fdf0de4a8b59e7f9adfb00ee))
 * test chart releaser ([e0e069c](https://github.com/kexa-io/helm-charts/commit/e0e069c358886615a0df79c97f6c8ab83f3754d5))
