@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/kexa-io/helm-charts/compare/v1.2.0...v1.2.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* Get new dashboards ([aa8419a](https://github.com/kexa-io/helm-charts/commit/aa8419a316801fb3ab1d739bb8009d84560f7632))
+* just a ci trigger & readme add ([709597b](https://github.com/kexa-io/helm-charts/commit/709597b980370314fdf0de4a8b59e7f9adfb00ee))
+* test chart releaser ([e0e069c](https://github.com/kexa-io/helm-charts/commit/e0e069c358886615a0df79c97f6c8ab83f3754d5))
+
 ## [1.2.1](https://github.com/kexa-io/helm-charts/compare/v1.2.0...v1.2.1) (2024-09-13)
 
 
