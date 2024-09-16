@@ -1,6 +1,9 @@
 name: Get Dashboards updates
 
 on: 
+  push:
+    branches:
+      - dev
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 1'
@@ -20,6 +23,15 @@ jobs:
           repository: 'kexa-io/grafana-dashboards'
           path: external-repo
 
+      - name: List Files in Repositories
+        run: |
+          echo "Listing files in current-repo:"
+          ls -R current-repo
+          echo "Listing files in external-repo:"
+          ls -R external-repo
+        shell: bash
+
+
       - name: Create Target Directory
         run: |
           mkdir -p current-repo/kexa-chart/files/dashboards
@@ -29,6 +41,13 @@ jobs:
         run: |
           cp -f external-repo/*.json current-repo/kexa-chart/files/dashboards/
         shell: bash
+
+      - name: List Target Directory
+        run: |
+          echo "Files in target directory after copy:"
+          ls -R current-repo/kexa-chart/files/dashboards/
+        shell: bash
+
 
       - name: Configure Git
         run: |
