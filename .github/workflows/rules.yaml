@@ -33,18 +33,18 @@ jobs:
 
       - name: Create Target Directory
         run: |
-          mkdir -p current-repo/kexa-chart/files/rules
+          mkdir -p current-repo/charts/kexa-chart/files/rules
         shell: bash
 
       - name: Copy Files
         run: |
-          cp -rf external-repo/* current-repo/kexa-chart/files/rules/
+          cp -rf external-repo/* current-repo/charts/kexa-chart/files/rules/
         shell: bash
 
       - name: List Target Directory
         run: |
           echo "Files in target directory after copy:"
-          ls -R current-repo/kexa-chart/files/rules/
+          ls -R current-repo/charts/kexa-chart/files/rules/
         shell: bash
 
 
@@ -56,7 +56,7 @@ jobs:
 
       - name: Commit changes
         run: |
-          git add kexa-chart/files/rules/
+          git add charts/kexa-chart/files/rules/
           git commit -m "Get new rules"
           git push
         env:

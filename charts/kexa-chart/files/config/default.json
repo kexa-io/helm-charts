@@ -1,0 +1,19 @@
+{
+    "kubernetes":[
+        {
+            "description": "organization 4urcloud",
+            "prefix": "KUBE1_",
+            "rules": [
+                "kubernetesConsumptions",
+            ]
+        }
+    ],
+    "save": [
+        {
+            "type": "postgres",
+            "name": "Clever Cloud Postgresql",
+            "urlName": "POSTGRES_STRING",
+            "description": "Database to save the data (clever-cloud)"
+        }
+    ]
+}
