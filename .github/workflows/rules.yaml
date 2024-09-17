@@ -57,8 +57,12 @@ jobs:
       - name: Commit changes
         run: |
           git add charts/kexa-chart/files/rules/
-          git commit -m "Get new rules"
-          git push
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Get new rules"
+            git push
+          else
+            echo "No changes to commit"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         working-directory: current-repo
