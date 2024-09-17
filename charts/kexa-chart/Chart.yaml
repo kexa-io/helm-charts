@@ -1,14 +1,13 @@
 apiVersion: v2
-name: "helm-kexa-grafana-postgres"
+name: helm-kexa-grafana-postgres
 description: A Helm chart that installs PostgreSQL and Grafana
 version: 1.4.0
-appVersion: "1.0"
+appVersion: '1.0'
 icon: https://kexa.io/kexa-no-background-color.png
-
 dependencies:
   - name: postgresql
     version: 15.0.0
-    repository: "https://charts.bitnami.com/bitnami"
+    repository: https://charts.bitnami.com/bitnami
   - name: grafana
     version: 8.5.1
-    repository: "https://grafana.github.io/helm-charts"
+    repository: https://grafana.github.io/helm-charts
