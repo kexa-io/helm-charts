@@ -3,6 +3,23 @@ entries:
   helm-kexa-grafana-postgres:
   - apiVersion: v2
     appVersion: "1.0"
+    created: "2024-09-17T09:40:43.99162226Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.0.0
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 8.5.1
+    description: A Helm chart that installs PostgreSQL and Grafana
+    digest: e908c2b7ea36ee690f0da2b1d22a815366b23c6e7917ed95f27037eb98a44eb4
+    icon: https://kexa.io/kexa-no-background-color.png
+    name: helm-kexa-grafana-postgres
+    urls:
+    - https://github.com/kexa-io/helm-charts/releases/download/helm-kexa-grafana-postgres-1.4.0/helm-kexa-grafana-postgres-1.4.0.tgz
+    version: 1.4.0
+  - apiVersion: v2
+    appVersion: "1.0"
     created: "2024-09-17T09:36:05.783494417Z"
     dependencies:
     - name: postgresql
@@ -18,4 +35,4 @@ entries:
     urls:
     - https://github.com/kexa-io/helm-charts/releases/download/helm-kexa-grafana-postgres-1.3.1/helm-kexa-grafana-postgres-1.3.1.tgz
     version: 1.3.1
-generated: "2024-09-17T09:36:05.783503514Z"
+generated: "2024-09-17T09:40:43.991635294Z"
