@@ -66,10 +66,11 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout new dev
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: dev
 
       - name: Set up Helm
         run: |
