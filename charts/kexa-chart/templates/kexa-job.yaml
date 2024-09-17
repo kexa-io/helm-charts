@@ -48,8 +48,8 @@ spec:
           restartPolicy: Never
           volumes:
           - name: kexa-config-volume
-            configMap:
-              name: kexa-configuration-files
+            secret:
+              secretName: kexa-configuration-secret
           - name: kexa-env-volume
             secret:
               secretName: kexa-environment-secret
