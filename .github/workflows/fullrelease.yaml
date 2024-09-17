@@ -3,7 +3,7 @@ name: Release Workflow (Semantic + Helm)
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
   semantic-release:
