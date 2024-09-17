@@ -1,5 +1,5 @@
 apiVersion: v2
-name: helm-kexa-grafana-postgres
+name: kexa
 description: A Helm chart that installs PostgreSQL and Grafana
 version: 1.4.1
 appVersion: '1.0'
