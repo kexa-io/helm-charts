@@ -1,7 +1,7 @@
 apiVersion: v2
 name: kexa
 description: A Helm chart that installs PostgreSQL and Grafana
-version: 1.4.1
+version: 1.4.2
 appVersion: '1.0'
 icon: https://kexa.io/kexa-no-background-color.png
 dependencies:
