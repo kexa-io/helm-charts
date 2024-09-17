@@ -28,10 +28,12 @@ jobs:
       - name: print new latest kexa version
         run: echo ${{ steps.get_latest_release.outputs.release }}
 
-      - name: Run Javascript to update local files
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+
+      - name: Run Javascript to update local files
         run: |
           npm install
           node update-app-version.js "${{ steps.get_latest_release.outputs.release }}"
