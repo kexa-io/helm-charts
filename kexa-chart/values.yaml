@@ -2,20 +2,27 @@ appname: kexa-helm
 
 namespace: default
 
-kubernetesAddon: # Enable or disable kubernetes addon
+kubernetesAddon:
   enabled: true
-  mountPath: kubernetesconfigurations # where to mount: this has to be the same as the path in your .env file
-                                      # ex: KUBECONFIG=./kubernetesconfigurations/kubeconfig.yaml
+  mountPath: kubernetesconfigurations
 
 
 postgresql:
-  postgresPassword: my_postgres_password 
-  username: kexa_postgres_user
-  password: my_postgres_password
-  database: kexa_export_database
+  image:
+    tag: "15.0.0"
+  global:
+    postgresql:
+      auth:
+        postgresPassword: my_postgres_password
+        username: kexa_postgres_user
+        password: my_postgres_password
+  livenessProbe:
+    initialDelaySeconds: 200
+  readinessProbe:
+    initialDelaySeconds: 200
   host: my-postgresql.default.svc.cluster.local
   fullnameOverride: "my-postgresql"
-  connectionString: "postgresql://kexa_postgres_user:my-postgresql.default.svc.cluster.local:5432/kexa_export_database"
+  connectionString: "postgresql://kexa_postgres_user:my_postgres_password@my-postgresql.default.svc.cluster.local:5432/kexa_export_database"
   auth:
     postgresPassword: my_postgres_password
     username: kexa_postgres_user
@@ -32,30 +39,79 @@ postgresql:
           CREATE DATABASE kexa_export_database;
           CREATE USER grafanareader WITH PASSWORD 'password';
           CREATE USER kexa_postgres_user WITH PASSWORD 'my_postgres_password';
-          GRANT USAGE ON SCHEMA schema TO grafanareader;
-          GRANT SELECT ON schema.table TO grafanareader;
+          
+          GRANT ALL PRIVILEGES ON DATABASE kexa_export_database TO kexa_postgres_user;
+          GRANT ALL ON SCHEMA public TO kexa_postgres_user;
+
+          \c kexa_export_database
+          
+          GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO kexa_postgres_user;
+          GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO kexa_postgres_user;
+          GRANT ALL PRIVILEGES ON ALL FUNCTIONS IN SCHEMA public TO kexa_postgres_user;
+
+          ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO kexa_postgres_user;
+          ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO kexa_postgres_user;
+          ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON FUNCTIONS TO kexa_postgres_user;
+          
+          GRANT USAGE ON SCHEMA public TO grafanareader;
+          GRANT SELECT ON ALL TABLES IN SCHEMA public TO grafanareader;
   persistence:
     enabled: true
     size: 10Gi
 
+grafana.ini:
+  database:
+    type: "postgres"
+    host: "my-postgresql.default.svc.cluster.local"
+    name: "kexa_export_database"
+    user: "kexa_postgres_user"
+    password: "my_postgres_password"
+    ssl_mode: "disable"
+
 
 grafana:
+  config:
+    grafana.ini:
+      dashboards:
+        path: /var/lib/grafana/dashboards
+  securityContext:
+    fsGroup: 472
+    runAsUser: 472
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      defaultFolderName: General
+      foldersFromFilesStructure: true
+      searchNamespace: ALL
+  dashboardsProvider:
+    enabled: true
+    configMapName: grafana-dashboards
+  volumeMounts:
+    - name: dashboard
+      mountPath: /var/lib/grafana/dashboards
+  volumes:
+    - name: dashboard
+      configMap:
+        name: grafana-dashboards
   datasources:
     datasources.yaml:
       apiVersion: 1
       datasources:
-        - name: PostgreSQL
-          type: postgres
-          access: proxy
-          orgId: 1
-          url: my-postgresql.default.svc.cluster.local:5432
-          user: kexa_postgres_user
+      - name: postgres-kexa-datasource
+        editable: false
+        type: postgres
+        access: proxy
+        url: my-postgresql.default.svc.cluster.local:5432
+        user: kexa_postgres_user
+        isDefault: false
+        secureJsonData:
           password: my_postgres_password
-          database: kexa_export_database
-          jsonData:
-            sslmode: "disable"
-            postgresVersion: 1500
-            timescaledb: true
+        database: kexa_export_database
+        jsonData:
+          sslmode: "disable"
+          postgresVersion: 1500
+          timescaledb: false
   sidecar:
     dashboards:
       enabled: true
