@@ -1,3 +1,16 @@
+# [1.5.0](https://github.com/kexa-io/helm-charts/compare/v1.4.2...v1.5.0) (2024-09-17)
+
+
+### Bug Fixes
+
+* conf as secret + dev app version update ([633c569](https://github.com/kexa-io/helm-charts/commit/633c5695e2aac290735760055900c0e5beaad9a1))
+* separate setup & run nodejs ([91eb82b](https://github.com/kexa-io/helm-charts/commit/91eb82b7b27c36722c2633c855c1cc6b8eb16e13))
+
+
+### Features
+
+* update app version script ([f5c50f2](https://github.com/kexa-io/helm-charts/commit/f5c50f275f2ab4cfd3b16fd118ba4aff56c0455d))
+
 ## [1.4.2](https://github.com/kexa-io/helm-charts/compare/v1.4.1...v1.4.2) (2024-09-17)
 
 
