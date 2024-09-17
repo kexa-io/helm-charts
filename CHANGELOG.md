@@ -1,3 +1,11 @@
+## [1.4.1](https://github.com/kexa-io/helm-charts/compare/v1.4.0...v1.4.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* versioning workflow semantic + helm releaser ([0f3b74a](https://github.com/kexa-io/helm-charts/commit/0f3b74ae16829b8c2662757966b3cd1b1eb81d05))
+* workflow OK, commit on main ([ef554df](https://github.com/kexa-io/helm-charts/commit/ef554df123ee70db9d634920284d193c907f8dbe))
+
 # [1.4.0](https://github.com/kexa-io/helm-charts/compare/v1.3.1...v1.4.0) (2024-09-17)
 
 
