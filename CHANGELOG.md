@@ -4,6 +4,14 @@
 ### Bug Fixes
 
 * add workflow dispatch for helm releaser ([71f4fb3](https://github.com/kexa-io/helm-charts/commit/71f4fb32e84f59c198acdc337872727767eb4536))
+* update repo hierarchy for Helm Releaser action ([41bf4a7](https://github.com/kexa-io/helm-charts/commit/41bf4a7f3e53de511b85ca464482663176dc99e2))
+
+## [1.3.1](https://github.com/kexa-io/helm-charts/compare/v1.3.0...v1.3.1) (2024-09-17)
+
+
+### Bug Fixes
+
+* add workflow dispatch for helm releaser ([71f4fb3](https://github.com/kexa-io/helm-charts/commit/71f4fb32e84f59c198acdc337872727767eb4536))
 
 # [1.3.0](https://github.com/kexa-io/helm-charts/compare/v1.2.0...v1.3.0) (2024-09-17)
 
