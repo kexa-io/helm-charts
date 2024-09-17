@@ -30,7 +30,16 @@
         {
           "publishCmd": "echo ::set-output name=nextVer::${nextRelease.version}"
         }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "node update-chart-version.js ${nextRelease.version}"
+        }
       ]
     ]
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
   }
 }
