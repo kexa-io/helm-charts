@@ -1,0 +1,51 @@
+name: Update App version
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: dev
+
+      - name: Get latest release of Kexa
+        uses: rez0n/actions-github-release@794c12f5e8d629e6ca329cf2e2daeb0f0ce6a3ce
+        id: get_latest_release
+        with:
+          token: ${{ secrets.GIT_TOKEN }}
+          repository: "kexa-io/Kexa"
+          type: "stable"
+
+      - name: print new latest kexa version
+        run: echo ${{ steps.get_latest_release.outputs.release }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run Javascript to update local files
+        run: |
+          npm install
+          node update-app-version.js "${{ steps.get_latest_release.outputs.release }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+      - name: Commit and push changes to dev
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add charts/kexa-chart/Chart.yaml
+          git commit -m "chore(release): update Chart.yaml appversion"
+          git push origin dev
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}

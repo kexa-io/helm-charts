@@ -7,10 +7,20 @@ If you do not want to use the cronjob, and just need a one time run:
 
 ## Create your secrets
 
+Kexa need configuration file (that define which rule to use and which addon to use) to run,
+as well as the credentials for the addons you will use.
+
 Most of addon's credentials are passed in .env file, only Kubernetes addon require
 a specific credential type, described below.
 
-Refer to the official Kexa documentation to learn more about addons authentication.
+Refer to the official Kexa documentation to learn more about addons authentication
+and Kexa configuration.
+
+
+*Upload your Kexa configuration (default.json)*
+```bash
+kubectl create secret generic kexa-configuration-secret --from-file=default.json=default.json
+```
 
 *For most addons credentials*
 ```bash
