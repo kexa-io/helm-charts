@@ -28,3 +28,22 @@ jobs:
       - name: print new latest kexa version
         run: echo ${{ steps.get_latest_release.outputs.release }}
 
+      - name: Run Javascript to update local files
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+        run: |
+          npm install
+          node update-app-version.js "${{ steps.get_latest_release.outputs.release }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+
+      - name: Commit and push changes to dev
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git add charts/kexa-chart/Chart.yaml
+          git commit -m "chore(release): update Chart.yaml appversion"
+          git push origin dev
+        env:
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}

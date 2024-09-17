@@ -1,5 +1,5 @@
 // YAML TO JSON
-// CHANGE CHART VERSION
+// CHANGE APP VERSION
 // THEN JSON TO YAML AND WRITE TO FILE
 
 const fs = require('fs');
@@ -7,6 +7,7 @@ const path = require('path');
 const yaml = require('js-yaml');
 
 const newVersion = process.argv[2];
+
 if (!newVersion) {
   console.error('Error: No version specified.');
   process.exit(1);
@@ -30,7 +31,7 @@ try {
 }
 
 if (chartData.version) {
-  chartData.version = newVersion;
+  chartData.appVersion = newVersion;
   console.log(`Updating version to ${newVersion}`);
 } else {
   console.error('Version field not found in Chart.yaml.');
