@@ -1,4 +1,8 @@
-repo:
-  - name: kexa-chart
+repos:
+  - name: bitnami
+    url: https://charts.bitnami.com/bitnami
+  - name: grafana
+    url: https://grafana.github.io/helm-charts
+  - name: my-charts
     url: https://kexa-io.github.io/helm-charts/
     path: charts
