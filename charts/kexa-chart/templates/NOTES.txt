@@ -1,31 +1,27 @@
 ------ NOTES -------
 
-
-#### Grafana Dashboard ####
-
-# Get Grafana's hashed password
-kubectl get secret --namespace default kexa-helm-grafana -o jsonpath="{.data.admin-password}"
-        OR
-kubectl get secret --namespace default kexa-helm-grafana-admin -o jsonpath="{.data.GF_SECURITY_ADMIN_PASSWORD}"
-
-
-
-# Decode hashed Grafana password
-[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YOUR_HASHED_PASSWORD_HERE"))
-
-# Forwarding port
-kubectl port-forward svc/kexa-helm-grafana 8080:80
-        OR
-kubectl port-forward svc/kexa-helm-grafana 3000
-
-# Login with 'admin' and password you got
-
+#### Postgres ####
 
 # Get postgres password
 kubectl get secret --namespace default my-postgresql -o jsonpath="{.data.postgres-password}"
 
 # Decode hashed Postgres password
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YOUR_HASHED_PASSWORD_HERE"))
+
+
+#### Grafana Dashboard ####
+
+# Get Grafana's hashed password
+kubectl get secret --namespace default YOUR_RELEASE_NAME-grafana -o jsonpath="{.data.admin-password}"
+
+# Decode hashed Grafana password
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YOUR_HASHED_PASSWORD_HERE"))
+
+# Forwarding port
+kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80
+
+# Login with 'admin' and password you got
+# All dashboards and database connection to Postgres are already set 
 
 
 #### Kexa Logs ####
