@@ -1,0 +1,4 @@
+repo:
+  - name: kexa-chart
+    url: https://kexa-io.github.io/helm-charts/
+    path: charts
