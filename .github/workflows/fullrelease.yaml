@@ -72,6 +72,12 @@ jobs:
           fetch-depth: 0
           ref: dev
 
+      - name: Fetch latest changes
+        run: |
+          git fetch origin
+          git reset --hard origin/${{ github.ref }}
+          git pull
+
       - name: Set up Helm
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami
