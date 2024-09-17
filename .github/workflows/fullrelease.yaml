@@ -75,8 +75,7 @@ jobs:
       - name: Fetch latest changes
         run: |
           git fetch origin
-          git reset --hard origin/${{ github.ref }}
-          git pull
+          git reset --hard origin/dev
 
       - name: Set up Helm
         run: |
