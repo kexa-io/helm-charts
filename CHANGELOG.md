@@ -1,3 +1,19 @@
+# [1.4.0](https://github.com/kexa-io/helm-charts/compare/v1.3.1...v1.4.0) (2024-09-17)
+
+
+### Bug Fixes
+
+* add dependencies in CICD ([cf4f52e](https://github.com/kexa-io/helm-charts/commit/cf4f52eba40ab0f3a29d87f47eb9506a817b269f))
+* add dependencies in CR config ([84c5c80](https://github.com/kexa-io/helm-charts/commit/84c5c80599b8baeda7409ab383fd6ffbeaf19d08))
+* CR config yaml & version ([7e20a70](https://github.com/kexa-io/helm-charts/commit/7e20a70978a8df785eba2fc3a476d837ee145b03))
+* no values.yaml variable in Chart.yaml ([62796ab](https://github.com/kexa-io/helm-charts/commit/62796ab176bf5f821141244bef10d837f995b2a4))
+* test in dev ([3e9b026](https://github.com/kexa-io/helm-charts/commit/3e9b026536864c8df5583f7b1e5ad972ad86007e))
+
+
+### Features
+
+* Helm Release ([a5a636e](https://github.com/kexa-io/helm-charts/commit/a5a636e6bc1351a0467be7d3b3b7955ce86dbcdc))
+
 ## [1.3.1](https://github.com/kexa-io/helm-charts/compare/v1.3.0...v1.3.1) (2024-09-17)
 
 
