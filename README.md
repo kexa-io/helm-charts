@@ -4,7 +4,7 @@ Helm charts to install &amp; run Kexa with postgres/mariaDB and Grafana
 If you do not want to use the cronjob, and just need a one time run:
     - Replace kexa-chart/templates/kexa-store.yaml with kexa-chart/store/kexa-store.yaml
 
-### Create your secrets
+## Create your secrets
 
 Most of addon's credentials are passed in .env file, only Kubernetes addon require
 a specific credential type, described below.
@@ -27,10 +27,10 @@ kubectl create secret generic kubeconfig-secret --from-file=kubeconfig.yaml=kube
 ```
 
 
-### Install the chart
+## Install the chart
 
 ```bash
 helm install kexa-helm .\kexa-chart\
 ```
 
-### Read the instructions in your console !
+## Read the instructions in your console !
