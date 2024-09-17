@@ -66,10 +66,17 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout new dev
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: dev
+
+      - name: Fetch latest changes
+        run: |
+          git fetch origin
+          git reset --hard origin/${{ github.ref }}
+          git pull
 
       - name: Set up Helm
         run: |
