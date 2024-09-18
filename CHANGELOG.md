@@ -1,3 +1,20 @@
+# [1.5.0](https://github.com/kexa-io/helm-charts/compare/v1.4.2...v1.5.0) (2024-09-18)
+
+
+### Bug Fixes
+
+* all flow no commit no fail ([9ba819b](https://github.com/kexa-io/helm-charts/commit/9ba819b9b0b517294bee8f5afd037ec0d5450204))
+* conf as secret + dev app version update ([633c569](https://github.com/kexa-io/helm-charts/commit/633c5695e2aac290735760055900c0e5beaad9a1))
+* no fail if no commit ([676259e](https://github.com/kexa-io/helm-charts/commit/676259e35e95d04c43ee2c35405fd0f90adfcd31))
+* readme for remote rules ([aff65c8](https://github.com/kexa-io/helm-charts/commit/aff65c89e3664ccabfd5fea2a53a6df75ba750d7))
+* separate setup & run nodejs ([91eb82b](https://github.com/kexa-io/helm-charts/commit/91eb82b7b27c36722c2633c855c1cc6b8eb16e13))
+* sync changelog ([a70a294](https://github.com/kexa-io/helm-charts/commit/a70a2946719bbfca33474f8b8e0e8ca527eec692))
+
+
+### Features
+
+* update app version script ([f5c50f2](https://github.com/kexa-io/helm-charts/commit/f5c50f275f2ab4cfd3b16fd118ba4aff56c0455d))
+
 # [1.5.0](https://github.com/kexa-io/helm-charts/compare/v1.4.2...v1.5.0) (2024-09-17)
 
 
