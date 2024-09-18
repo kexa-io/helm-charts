@@ -22,7 +22,7 @@ and Kexa configuration.
 kubectl create secret generic kexa-configuration-secret --from-file=default.json=default.json
 ```
 
-*For most addons credentials*
+*Upload your environment file (for most addons credentials)*
 ```bash
 kubectl create secret generic kexa-environment-secret --from-file=.env=.env
 ```
@@ -37,6 +37,16 @@ kubectl create secret generic kubeconfig-secret --from-file=kubeconfig.yaml=kube
 kubectl create secret generic kubeconfig-secret --from-file=kubeconfig.yaml=kubeconfig.yaml --from-file=secondkubeconfig.yaml=secondkubeconfig.yaml
 ```
 
+## Using Custom rules
+
+To use a custom remote rules folder, please inform those fields in your environment file
+before adding it as a secret.
+
+```bash
+  RULESDIRECTORY="https://api.github.com/repos/kexa-io/public-rules/zipball/main" # example with kexa-io/public-rules (same as default rules available in Helm chart)
+  RULESAUTHORIZATION="Bearer github_pat_XXXXXXXXXXXXXXXXXXXXXXXX" # if repo is private
+```
+
 
 ## Install the chart
 
@@ -49,5 +59,5 @@ helm repo add YOUR_REPOSITORY_NAME https://kexa-io.github.io/helm-charts/
 ```bash
 helm install YOUR_RELEASE_NAME YOUR_REPOSITORY_NAME/kexa
 ```
-
-## Read the instructions in your console !
+ 
+*Read the instructions in your console !*
