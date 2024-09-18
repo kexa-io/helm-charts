@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appname }}-rundeck
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appname }}-rundeck
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appname }}-rundeck
+    spec:
+      containers:
+        - name: rundeck
+          image: "{{ .Values.rundeck.image.repository }}:{{ .Values.rundeck.image.tag }}"
+          ports:
+            - containerPort: 4440
+          volumeMounts:
+            - name: rundeck-config
+              mountPath: /home/rundeck/server/config
+          env:
+            - name: EXTERNAL_SERVER_URL
+              value: "http://localhost:4440"
+            - name: RUNDECK_ADMIN_PASSWORD  
+              value: "admin"
+      volumes:
+        - name: rundeck-config
+          emptyDir: {}

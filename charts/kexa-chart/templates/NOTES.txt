@@ -24,6 +24,11 @@ kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80
 # All dashboards and database connection to Postgres are already set 
 
 
+### Rundeck dashboard (scheduling) ###
+
+# Forwarding port
+kubectl port-forward svc/kexa-helm-rundeck-svc 4440:80
+
 #### Kexa Logs ####
 
 # Follow logs from job
