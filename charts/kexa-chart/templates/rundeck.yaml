@@ -12,6 +12,13 @@ spec:
       labels:
         app: {{ .Values.appname }}-rundeck
     spec:
+      initContainers:
+        - name: init-copy-plugin
+          image: busybox
+          command: ['sh', '-c', 'mkdir -p /opt/rundeck-plugins && echo "{{ .Files.Get "files/kubernetes-2.0.14.zip" | b64enc }}" | base64 -d > /opt/rundeck-plugins/kubernetes-2.0.14.zip']
+          volumeMounts:
+            - name: rundeck-plugin
+              mountPath: /opt/rundeck-plugins
       containers:
         - name: rundeck
           image: "{{ .Values.rundeck.image.repository }}:{{ .Values.rundeck.image.tag }}"
@@ -20,6 +27,8 @@ spec:
           volumeMounts:
             - name: rundeck-config
               mountPath: /home/rundeck/server/config
+            - name: rundeck-plugin
+              mountPath: /opt/rundeck-plugins
           env:
             - name: EXTERNAL_SERVER_URL
               value: "http://localhost:4440"
@@ -27,4 +36,6 @@ spec:
               value: "admin"
       volumes:
         - name: rundeck-config
+          emptyDir: {}
+        - name: rundeck-plugin
           emptyDir: {}

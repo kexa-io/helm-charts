@@ -31,9 +31,6 @@ kubectl port-forward svc/kexa-helm-rundeck-svc 4440:80
 
 #### Kexa Logs ####
 
-# Follow logs from job
-kubectl logs job/kexa-helm-job -f
-
 # Find logs from cronjob
 kubectl get jobs
 kubectl logs jobs/kexa-helm-job-XXXXXX -f
