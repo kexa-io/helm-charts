@@ -141,8 +141,3 @@ kexaScript:
     name: "Clever Cloud Postgresql"
     urlName: postgres_connect
     description: "Database to save the data (clever-cloud)"
-
-rundeck:
-  image:
-    repository: jordan/rundeck #adriencloud/rundeck-kube-python
-    tag: latest
