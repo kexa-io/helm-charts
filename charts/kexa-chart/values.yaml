@@ -141,3 +141,22 @@ kexaScript:
     name: "Clever Cloud Postgresql"
     urlName: postgres_connect
     description: "Database to save the data (clever-cloud)"
+
+
+cronicle:
+  repository: innovtech/kexa-cronicle
+  tag: latest
+  envFile: .env
+  volumes:
+    tmpconfig:
+      mountPath: /app/shared
+    localtime:
+      mountPath: /etc/localtime
+    timezone:
+      mountPath: /etc/timezone
+    data:
+      mountPath: /opt/cronicle/data
+    logs:
+      mountPath: /opt/cronicle/logs
+    plugins:
+      mountPath: /opt/cronicle/plugins

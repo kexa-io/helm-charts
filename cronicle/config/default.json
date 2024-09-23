@@ -1,0 +1,19 @@
+{
+    "azure":[
+        {
+            "description": "organization 4urcloud",
+            "prefix": "AZUREPROJ1_",
+            "rules": [
+                "azureBenchmarkRules"
+            ]
+        }
+    ],
+    "save": [
+        {
+            "type": "postgres",
+            "name": "Clever Cloud Postgresql",
+            "urlName": "postgres_connect",
+            "description": "Database to save the data (clever-cloud)"
+        }
+    ]
+}
