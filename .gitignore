@@ -2,3 +2,4 @@ kexa-chart/files/environment/*
 kexa-chart/files/config/*
 node_modules/*
 .env
+charts/kexa-chart/data/*

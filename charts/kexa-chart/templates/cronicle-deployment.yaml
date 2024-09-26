@@ -1,0 +1,111 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.appname }}-cronicle"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cronicle
+  template:
+    metadata:
+      labels:
+        app: cronicle
+    spec:
+      serviceAccountName: {{ .Values.appname }}-cronicle-sa
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      containers:
+      - name: "{{ .Values.appname }}-cronicle-container"
+        image: "{{ .Values.cronicle.repository }}:{{ .Values.cronicle.tag }}"
+        command:
+          - sh
+          - -c
+          - |
+            chown -R 1000:3000 /opt /opt/cronicle /opt/cronicle/data /opt/cronicle/lib /opt/cronicle/node_modules /opt/cronicle/logs /opt/cronicle/plugins /opt/cronicle/bin/shell-plugin.js && \
+            /opt/cronicle/bin/control.sh setup && /opt/cronicle/bin/control.sh start
+        env:
+          - name: POSTGRES_STRING
+            valueFrom:
+              secretKeyRef:
+                name: kexa-secret
+                key: postgres-connection-string
+          - name: DOCKER_HOST
+            value: "tcp://{{ .Values.appname }}-dind-service:2375"
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+          - name: kexa-config-volume
+            mountPath: /app/config/default.json
+            subPath: default.json
+            readOnly: false
+          - name: kexa-env-volume
+            mountPath: /app/.env
+            subPath: .env
+            readOnly: false
+          - name: writable-app-volume
+            mountPath: /app/config
+            readOnly: false
+          - name: rulesuser
+            mountPath: /app/shared/tmpconfig
+            subPath: tmpconfig
+            readOnly: false
+          - name: localtime
+            mountPath: /etc/localtime
+            readOnly: false
+          - name: timezone
+            mountPath: /etc/timezone
+            readOnly: false
+          - name: data
+            mountPath: /opt/cronicle/data
+            readOnly: false
+          - name: logs
+            mountPath: /opt/cronicle/logs
+            readOnly: false
+          - name: plugins
+            mountPath: /opt/cronicle/plugins
+            readOnly: false
+{{- if .Values.kubernetesAddon.enabled }}
+          - name: kubeconfig-volume
+            mountPath: "/app/{{ .Values.kubernetesAddon.mountPath }}"
+            readOnly: false
+{{- end }}
+        resources:
+          limits:
+            cpu: "1000m"
+            memory: "2048Mi"
+          requests:
+            cpu: "500m"
+            memory: "1024Mi"
+      restartPolicy: Always
+      volumes:
+      - name: kexa-config-volume
+        secret:
+          secretName: kexa-configuration-secret
+      - name: kexa-env-volume
+        secret:
+          secretName: kexa-environment-secret
+      - name: writable-app-volume
+        emptyDir: {}
+      - name: rulesuser
+        persistentVolumeClaim:
+          claimName: {{ .Values.appname }}-kexa-rules-pvc
+      - name: localtime
+        hostPath:
+          path: /etc/localtime
+      - name: timezone
+        hostPath:
+          path: /etc/timezone
+      - name: data
+        emptyDir: {}
+      - name: logs
+        emptyDir: {}
+      - name: plugins
+        emptyDir: {}
+{{- if .Values.kubernetesAddon.enabled }}
+      - name: kubeconfig-volume
+        secret:
+          secretName: kubeconfig-secret
+{{- end }}

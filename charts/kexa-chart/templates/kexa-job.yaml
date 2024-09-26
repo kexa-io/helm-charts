@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: "{{ .Values.appname }}-job"
 spec:
-  schedule: "*/2 * * * *"
+  schedule: "0 0 29 2 1"  # Use "0 0 29 2 1" for never if you're using the Cronicle scheduler
   jobTemplate:
     spec:
       template:

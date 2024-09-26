@@ -24,10 +24,12 @@ kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80
 # All dashboards and database connection to Postgres are already set 
 
 
-#### Kexa Logs ####
+### Cronicle dashboard (scheduling) ###
 
-# Follow logs from job
-kubectl logs job/kexa-helm-job -f
+# Forwarding port
+kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80
+
+#### Kexa Logs ####
 
 # Find logs from cronjob
 kubectl get jobs

@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Values.appname }}-cronicle-role-binding
+  namespace: {{ .Values.namespace }}
+subjects:
+- kind: ServiceAccount
+  name: {{ .Values.appname }}-cronicle-sa
+  namespace: {{ .Values.namespace }}
+roleRef:
+  kind: Role
+  name: {{ .Values.appname }}-cronicle-role
+  apiGroup: rbac.authorization.k8s.io

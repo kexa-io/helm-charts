@@ -39,12 +39,31 @@ kubectl create secret generic kubeconfig-secret --from-file=kubeconfig.yaml=kube
 
 ## Using Custom rules
 
+To use custom rules, you have two option :
+  - Remote rules repository
+  - Mounting your rules folder
+
+#### With remote repository
+
 To use a custom remote rules folder, please inform those fields in your environment file
 before adding it as a secret.
 
 ```bash
   RULESDIRECTORY="https://api.github.com/repos/kexa-io/public-rules/zipball/main" # example with kexa-io/public-rules (same as default rules available in Helm chart)
   RULESAUTHORIZATION="Bearer github_pat_XXXXXXXXXXXXXXXXXXXXXXXX" # if repo is private
+```
+
+#### With folder mount
+
+To mount a rule folder, create a folder named "tmpconfig".
+Inside this folder, put the entire "rules" folder you want to use.
+So you'll get a path like "tmpconfig/rules"
+
+You'll need to input those information into your values.yaml when installing the chart :
+
+```yaml
+hostConfigPath: /mnt/host/c/your/path/to/tmpconfig
+hostConfigFolder: tmpconfig
 ```
 
 
@@ -60,4 +79,24 @@ helm repo add YOUR_REPOSITORY_NAME https://kexa-io.github.io/helm-charts/
 helm install YOUR_RELEASE_NAME YOUR_REPOSITORY_NAME/kexa
 ```
  
+ 
+## Using Grafana
+
+Once the chart is installed, follow the instructions displayed for Grafana.
+
+## Using the scheduler
+
+Once the chart is installed, wait for the pod to be ready and forward the Cronicle service with:
+```
+kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80
+```
+
+Once on the page, create a new job to schedule, with the plugin "Shell script"
+Simply copy paste the content of  "helm-charts/cronicle/jobCronicleScriptDocker.sh" into the script area.
+
+Save & try to run it in the "schedule" section.
+
+Now you can schedule Kexa as you wish through Cronicle
+
+
 *Read the instructions in your console !*
