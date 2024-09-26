@@ -99,4 +99,4 @@ Save & try to run it in the "schedule" section.
 Now you can schedule Kexa as you wish through Cronicle
 
 
-*Read the instructions in your console once chart is installed!*
+*Read the instructions in your console!*
