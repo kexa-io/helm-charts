@@ -1,3 +1,13 @@
+## [1.5.1](https://github.com/kexa-io/helm-charts/compare/v1.5.0...v1.5.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* Adding Cronicle scheduling (Docker OK) ([dfd99ff](https://github.com/kexa-io/helm-charts/commit/dfd99ffa64368e89d4ff43cc50e82561fc9d6204))
+* cronicle with kube ([5d6cfdd](https://github.com/kexa-io/helm-charts/commit/5d6cfddf9ffa08ad5e2ba3f38e9ca31476e1f4fd))
+* example envd ([1ab8af3](https://github.com/kexa-io/helm-charts/commit/1ab8af3427aadefd2cb6e6871996a4db8f143d63))
+* rundeck deploy ok ([fb3c294](https://github.com/kexa-io/helm-charts/commit/fb3c29423c4bcda71f3655a6b60aac342becfedd))
+
 # [1.5.0](https://github.com/kexa-io/helm-charts/compare/v1.4.2...v1.5.0) (2024-09-18)
 
 
