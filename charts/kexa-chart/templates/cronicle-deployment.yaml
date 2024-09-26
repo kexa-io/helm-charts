@@ -32,6 +32,8 @@ spec:
               secretKeyRef:
                 name: kexa-secret
                 key: postgres-connection-string
+          - name: DOCKER_HOST
+            value: "tcp://{{ .Values.appname }}-dind-service:2375"
         securityContext:
           runAsUser: 0
         volumeMounts:
@@ -46,8 +48,9 @@ spec:
           - name: writable-app-volume
             mountPath: /app/config
             readOnly: false
-          - name: tmpconfig
-            mountPath: /app/shared
+          - name: rulesuser
+            mountPath: /app/shared/tmpconfig
+            subPath: tmpconfig
             readOnly: false
           - name: localtime
             mountPath: /etc/localtime
@@ -63,9 +66,6 @@ spec:
             readOnly: false
           - name: plugins
             mountPath: /opt/cronicle/plugins
-            readOnly: false
-          - name: docker-socket
-            mountPath: /var/run/docker.sock
             readOnly: false
 {{- if .Values.kubernetesAddon.enabled }}
           - name: kubeconfig-volume
@@ -89,17 +89,15 @@ spec:
           secretName: kexa-environment-secret
       - name: writable-app-volume
         emptyDir: {}
-      - name: tmpconfig
-        emptyDir: {}
+      - name: rulesuser
+        persistentVolumeClaim:
+          claimName: {{ .Values.appname }}-kexa-rules-pvc
       - name: localtime
         hostPath:
           path: /etc/localtime
       - name: timezone
         hostPath:
           path: /etc/timezone
-      - name: docker-socket
-        hostPath:
-          path: /var/run/guest-services/docker.sock
       - name: data
         emptyDir: {}
       - name: logs

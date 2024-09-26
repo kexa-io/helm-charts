@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.appname }}-dind-deployment
+  labels:
+    app: {{ .Values.appname }}-dind
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.appname }}-dind
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.appname }}-dind
+    spec:
+      containers:
+      - name: {{ .Values.appname }}-dind-container
+        image: docker:27.3.1-dind
+        securityContext:
+          privileged: true
+        env:
+        - name: DOCKER_TLS_CERTDIR
+          value: ""
+        - name: DOCKER_HOST
+          value: "tcp://0.0.0.0:2375"
+        ports:
+        - containerPort: 2375
+        volumeMounts:
+        - name: dind-storage
+          mountPath: /var/lib/docker
+      volumes:
+      - name: dind-storage
+        emptyDir: {}
