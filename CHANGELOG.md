@@ -1,3 +1,29 @@
+# [2.0.0](https://github.com/kexa-io/helm-charts/compare/v1.5.0...v2.0.0) (2024-09-26)
+
+
+### break
+
+* Realese Cronicle ([15f1b0d](https://github.com/kexa-io/helm-charts/commit/15f1b0d807810964fd5c35fcdb0faf753a342291))
+
+
+### Bug Fixes
+
+* Adding Cronicle scheduling (Docker OK) ([dfd99ff](https://github.com/kexa-io/helm-charts/commit/dfd99ffa64368e89d4ff43cc50e82561fc9d6204))
+* cronicle with kube ([5d6cfdd](https://github.com/kexa-io/helm-charts/commit/5d6cfddf9ffa08ad5e2ba3f38e9ca31476e1f4fd))
+* example envd ([1ab8af3](https://github.com/kexa-io/helm-charts/commit/1ab8af3427aadefd2cb6e6871996a4db8f143d63))
+* rundeck deploy ok ([fb3c294](https://github.com/kexa-io/helm-charts/commit/fb3c29423c4bcda71f3655a6b60aac342becfedd))
+
+
+### Performance Improvements
+
+* Release 2.0 with Cronicle schedule ([8422a9b](https://github.com/kexa-io/helm-charts/commit/8422a9bd7da0379a74924d8ee58e0c6e70b01560))
+
+
+### BREAKING CHANGES
+
+* Release Cronicle scheduler deployment
+* Added Cronicle service & DinD
+
 ## [1.5.1](https://github.com/kexa-io/helm-charts/compare/v1.5.0...v1.5.1) (2024-09-26)
 
 
