@@ -79,7 +79,7 @@ helm repo add YOUR_REPOSITORY_NAME https://kexa-io.github.io/helm-charts/
 helm install YOUR_RELEASE_NAME YOUR_REPOSITORY_NAME/kexa
 ```
  
- 
+
 ## Using Grafana
 
 Once the chart is installed, follow the instructions displayed for Grafana.
@@ -99,4 +99,4 @@ Save & try to run it in the "schedule" section.
 Now you can schedule Kexa as you wish through Cronicle
 
 
-*Read the instructions in your console !*
+*Read the instructions in your console!*
