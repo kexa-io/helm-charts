@@ -3,6 +3,7 @@ appname: kexa-helm
 namespace: kexa
 hostConfigPath: /mnt/host/c/path/to/your/tmpconfig
 hostConfigFolder: tmpconfig
+uselocalRules: false
 kubernetesAddon:
   enabled: true
   mountPath: kubernetesconfigurations

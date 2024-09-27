@@ -80,6 +80,7 @@ You'll need to input those information into your values.yaml when installing the
 ```yaml
 hostConfigPath: /mnt/host/c/your/path/to/tmpconfig
 hostConfigFolder: tmpconfig
+uselocalRules: true
 ```
 
 
