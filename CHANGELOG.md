@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/kexa-io/helm-charts/compare/v2.0.1...v2.0.2) (2024-09-27)
+
+
+### Bug Fixes
+
+* no crash when no local rules ([1af7143](https://github.com/kexa-io/helm-charts/commit/1af71437a1e9f4561e9aba878370e7691ca5df86))
+
 ## [2.0.1](https://github.com/kexa-io/helm-charts/compare/v2.0.0...v2.0.1) (2024-09-27)
 
 
