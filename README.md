@@ -4,6 +4,10 @@ Helm charts to install &amp; run Kexa with postgres/mariaDB and Grafana
 If you do not want to use the cronjob, and just need a one time run:
     - Replace kexa-chart/templates/kexa-store.yaml with kexa-chart/store/kexa-store.yaml
 
+First, create the namspace.
+```bash
+kubectl create namespace kexa
+```
 
 ## Create your secrets
 
@@ -16,25 +20,37 @@ a specific credential type, described below.
 Refer to the official Kexa documentation to learn more about addons authentication
 and Kexa configuration.
 
+To automatically be connected to the Postgres database deployed with Helm chart, you'll need
+the following save addon in your "_default.json_":
+```json
+    "save": [
+        {
+            "type": "postgres",
+            "name": "Postgres local cluster",
+            "urlName": "POSTGRES_STRING",
+            "description": "Database to save the data (local cluster)"
+        }
+    ]
+```
 
 *Upload your Kexa configuration (default.json)*
 ```bash
-kubectl create secret generic kexa-configuration-secret --from-file=default.json=default.json
+kubectl create secret generic kexa-configuration-secret --from-file=default.json=default.json -n kexa
 ```
 
 *Upload your environment file (for most addons credentials)*
 ```bash
-kubectl create secret generic kexa-environment-secret --from-file=.env=.env
+kubectl create secret generic kexa-environment-secret --from-file=.env=.env -n kexa
 ```
 
 *For Kubernetes credentials*
 ```bash
-kubectl create secret generic kubeconfig-secret --from-file=kubeconfig.yaml=kubeconfig.yaml
+kubectl create secret generic kubeconfig-secret --from-file=kubeconfig.yaml=kubeconfig.yaml -n kexa
 ```
 
 *For multiple Kubernetes credentials*
 ```bash
-kubectl create secret generic kubeconfig-secret --from-file=kubeconfig.yaml=kubeconfig.yaml --from-file=secondkubeconfig.yaml=secondkubeconfig.yaml
+kubectl create secret generic kubeconfig-secret --from-file=kubeconfig.yaml=kubeconfig.yaml --from-file=secondkubeconfig.yaml=secondkubeconfig.yaml -n kexa
 ```
 
 ## Using Custom rules
@@ -71,14 +87,26 @@ hostConfigFolder: tmpconfig
 
 *Adding the Kexa repository*
 ```bash
-helm repo add YOUR_REPOSITORY_NAME https://kexa-io.github.io/helm-charts/
+helm repo add kexa https://kexa-io.github.io/helm-charts/
 ```
 
 *Installing Kexa chart*
 ```bash
-helm install YOUR_RELEASE_NAME YOUR_REPOSITORY_NAME/kexa
+helm install YOUR_RELEASE_NAME kexa/kexa -n kexa
 ```
- 
+
+*Installing chart (using Kubernetes cronjob instead of Cronicle Scheduler)*
+```bash
+helm install YOUR_RELEASE_NAME kexa/kexa -n kexa --set kexaKubeCronJob="*/2 * * * *" --set kubernetesAddon.mountPath="kexakubeconfigs" # 2 minutes cronjob
+```
+
+If running with Kubernetes cronjob, you'll also need precise the Kubernetes mount path
+in you're env (choose any name, but use the same for .env and values.yaml)
+
+.env for kubernetes cronjob:
+```bash
+PREFIX_KUBECONFIG=kexakubeconfigs/kubeconfig.yaml
+```
 
 ## Using Grafana
 
@@ -88,7 +116,7 @@ Once the chart is installed, follow the instructions displayed for Grafana.
 
 Once the chart is installed, wait for the pod to be ready and forward the Cronicle service with:
 ```
-kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80
+kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80 -n kexa
 ```
 
 Once on the page, create a new job to schedule, with the plugin "Shell script"
