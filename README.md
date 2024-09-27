@@ -86,7 +86,7 @@ uselocalRules: true
 or when installing the chart
 
 ```yaml
- helm install kexa-helm kexa/kexa -n kexa --set hostConfigPath="/mnt/host/c/your/path/to/tmpconfig" --set uselocalRules=true
+ helm install kexa-helm kexa/kexa -n kexa --set hostConfigPath="/mnt/host/c/your/path/to/tmpconfig" --set uselocalRules="true"
 ```
 
 ## Install the chart
@@ -134,3 +134,5 @@ Now you can schedule Kexa as you wish through Cronicle
 
 
 *Read the instructions in your console!*
+
+
