@@ -49,10 +49,6 @@ spec:
           - name: writable-app-volume
             mountPath: /app/config
             readOnly: false
-          - name: rulesuser
-            mountPath: /app/shared/tmpconfig
-            subPath: tmpconfig
-            readOnly: false
           - name: localtime
             mountPath: /etc/localtime
             readOnly: false
@@ -68,6 +64,12 @@ spec:
           - name: plugins
             mountPath: /opt/cronicle/plugins
             readOnly: false
+{{- if .Values.uselocalRules }}
+          - name: rulesuser
+            mountPath: /app/shared/tmpconfig
+            subPath: tmpconfig
+            readOnly: false
+{{- end }}
 {{- if .Values.kubernetesAddon.enabled }}
           - name: kubeconfig-volume
             mountPath: "/app/{{ .Values.kubernetesAddon.mountPath }}"
@@ -90,9 +92,6 @@ spec:
           secretName: kexa-environment-secret
       - name: writable-app-volume
         emptyDir: {}
-      - name: rulesuser
-        persistentVolumeClaim:
-          claimName: {{ .Values.appname }}-kexa-rules-pvc
       - name: localtime
         hostPath:
           path: /etc/localtime
@@ -105,6 +104,11 @@ spec:
         emptyDir: {}
       - name: plugins
         emptyDir: {}
+{{- if .Values.uselocalRules }}
+      - name: rulesuser
+        persistentVolumeClaim:
+          claimName: {{ .Values.appname }}-kexa-rules-pvc
+{{- end }}
 {{- if .Values.kubernetesAddon.enabled }}
       - name: kubeconfig-volume
         secret:
