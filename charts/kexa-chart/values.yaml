@@ -1,12 +1,12 @@
 appname: kexa-helm
 
-namespace: default
-hostConfigPath: /mnt/host/c/your/path/to/tmpconfig
+namespace: kexa
+hostConfigPath: /mnt/host/c/path/to/your/tmpconfig
 hostConfigFolder: tmpconfig
 kubernetesAddon:
   enabled: true
   mountPath: kubernetesconfigurations
-
+kexaKubeCronJob: "0 0 29 2 1"  # Use "0 0 29 2 1" for never if you're using the Cronicle scheduler
 
 postgresql:
   image:
@@ -21,9 +21,9 @@ postgresql:
     initialDelaySeconds: 200
   readinessProbe:
     initialDelaySeconds: 200
-  host: my-postgresql.default.svc.cluster.local
+  host: my-postgresql.kexa.svc.cluster.local
   fullnameOverride: "my-postgresql"
-  connectionString: "postgresql://kexa_postgres_user:my_postgres_password@my-postgresql.default.svc.cluster.local:5432/kexa_export_database"
+  connectionString: "postgresql://kexa_postgres_user:my_postgres_password@my-postgresql.kexa.svc.cluster.local:5432/kexa_export_database"
   auth:
     postgresPassword: my_postgres_password
     username: kexa_postgres_user
@@ -63,7 +63,7 @@ postgresql:
 grafana.ini:
   database:
     type: "postgres"
-    host: "my-postgresql.default.svc.cluster.local"
+    host: "my-postgresql.kexa.svc.cluster.local"
     name: "kexa_export_database"
     user: "kexa_postgres_user"
     password: "my_postgres_password"
@@ -103,7 +103,7 @@ grafana:
         editable: false
         type: postgres
         access: proxy
-        url: my-postgresql.default.svc.cluster.local:5432
+        url: my-postgresql.kexa.svc.cluster.local:5432
         user: kexa_postgres_user
         isDefault: false
         secureJsonData:
@@ -117,7 +117,7 @@ grafana:
     dashboards:
       enabled: true
       label: grafana_dashboard
-      defaultNamespace: default
+      defaultNamespace: kexa
   volumeMounts:
     - name: dashboards
       mountPath: /var/lib/grafana/dashboards

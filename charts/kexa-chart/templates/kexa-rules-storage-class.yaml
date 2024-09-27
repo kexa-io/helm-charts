@@ -2,5 +2,6 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name:  {{ .Values.appname }}-rules-storage-class
+  namespace: {{ .Values.namespace }}
 provisioner: kubernetes.io/no-provisioner
 volumeBindingMode: WaitForFirstConsumer

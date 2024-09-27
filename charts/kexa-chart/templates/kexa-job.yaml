@@ -2,8 +2,9 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: "{{ .Values.appname }}-job"
+  namespace: {{ .Values.namespace }}
 spec:
-  schedule: "0 0 29 2 1"  # Use "0 0 29 2 1" for never if you're using the Cronicle scheduler
+  schedule: "{{ .Values.kexaKubeCronJob }}"  # Use "0 0 29 2 1" for never if you're using the Cronicle scheduler
   jobTemplate:
     spec:
       template:

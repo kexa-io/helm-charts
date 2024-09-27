@@ -2,23 +2,30 @@
 
 #### Postgres ####
 
-# Get postgres password
-kubectl get secret --namespace default my-postgresql -o jsonpath="{.data.postgres-password}"
+# Linux: Get & decode postgres password
+kubectl get secret -n kexa my-postgresql -o jsonpath="{.data.postgres-password}" | base64 --decode ; echo
 
-# Decode hashed Postgres password
+# Windows: Get postgres password
+kubectl get secret --namespace kexa my-postgresql -o jsonpath="{.data.postgres-password}"
+
+# Windows: Decode hashed Postgres password
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YOUR_HASHED_PASSWORD_HERE"))
+
 
 
 #### Grafana Dashboard ####
 
-# Get Grafana's hashed password
-kubectl get secret --namespace default YOUR_RELEASE_NAME-grafana -o jsonpath="{.data.admin-password}"
+# Linux: Get & decode Grafana password
+kubectl get secret -n kexa kexa-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
 
-# Decode hashed Grafana password
+# Windows: Get Grafana's hashed password
+kubectl get secret --namespace kexa YOUR_RELEASE_NAME-grafana -o jsonpath="{.data.admin-password}"
+
+# Windows: Decode hashed Grafana password
 [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YOUR_HASHED_PASSWORD_HERE"))
 
 # Forwarding port
-kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80
+kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80 -n kexa
 
 # Login with 'admin' and password you got
 # All dashboards and database connection to Postgres are already set 
@@ -27,7 +34,7 @@ kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80
 ### Cronicle dashboard (scheduling) ###
 
 # Forwarding port
-kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80
+kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80 -n kexa
 
 #### Kexa Logs ####
 
