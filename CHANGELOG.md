@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/kexa-io/helm-charts/compare/v2.0.0...v2.0.1) (2024-09-27)
+
+
+### Bug Fixes
+
+* variable cronjob + namespace ([793e80e](https://github.com/kexa-io/helm-charts/commit/793e80e60841a69e1878ddb730e9f8698b40cd48))
+
 # [2.0.0](https://github.com/kexa-io/helm-charts/compare/v1.5.0...v2.0.0) (2024-09-26)
 
 
