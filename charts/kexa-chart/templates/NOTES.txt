@@ -36,6 +36,9 @@ kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80 -n kexa
 # Forwarding port
 kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80 -n kexa
 
+# Login
+With admin/admin
+
 #### Kexa Logs ####
 
 # Find logs from cronjob

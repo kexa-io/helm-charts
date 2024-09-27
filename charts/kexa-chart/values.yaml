@@ -1,7 +1,7 @@
 appname: kexa-helm
 
 namespace: kexa
-hostConfigPath: /mnt/host/c/path/to/your/tmpconfig
+hostConfigPath: /mnt/host/c/your/path/to/tmpconfig
 hostConfigFolder: tmpconfig
 uselocalRules: false
 kubernetesAddon:
@@ -12,12 +12,6 @@ kexaKubeCronJob: "0 0 29 2 1"  # Use "0 0 29 2 1" for never if you're using the 
 postgresql:
   image:
     tag: "15.0.0"
-  global:
-    postgresql:
-      auth:
-        postgresPassword: my_postgres_password
-        username: kexa_postgres_user
-        password: my_postgres_password
   livenessProbe:
     initialDelaySeconds: 200
   readinessProbe:
@@ -30,8 +24,9 @@ postgresql:
     username: kexa_postgres_user
     password: my_postgres_password
     database: kexa_export_database
-  service:
-    port: 5432
+  persistence:
+    enabled: true
+    size: 10Gi
   primary:
     service:
       port: 5432
@@ -131,18 +126,6 @@ grafana:
 kexaScript:
   image: innovtech/kexa
   tag: latest
-  volumeMounts:
-    - name: configuration-files
-      mountPath: /app/config
-  volumes:
-    - name: configuration-files
-      configMap:
-        name: kexa-configuration-files
-  saveAddon:
-    type: postgres
-    name: "Clever Cloud Postgresql"
-    urlName: postgres_connect
-    description: "Database to save the data (clever-cloud)"
 
 
 cronicle:

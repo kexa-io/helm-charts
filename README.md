@@ -135,4 +135,64 @@ Now you can schedule Kexa as you wish through Cronicle
 
 *Read the instructions in your console!*
 
+## Custom Values
 
+```yaml
+# app name
+appname: kexa-helm
+
+namespace: kexa
+
+# local rules folder mount
+hostConfigPath: /mnt/host/c/your/path/to/tmpconfig
+hostConfigFolder: tmpconfig
+uselocalRules: false
+
+# kubernetes addon
+kubernetesAddon:
+  enabled: true
+  mountPath: kubernetesconfigurations
+
+# kubernetes cronjob (instead of using Cronicle)
+kexaKubeCronJob: "0 0 29 2 1"
+
+# Kexa version
+kexaScript:
+  image: innovtech/kexa
+  tag: latest
+
+# database connection
+# can only be reconfigured here
+grafana.ini:
+  database:
+    type: "postgres"
+    host: "my-postgresql.kexa.svc.cluster.local"
+    name: "kexa_export_database"
+    user: "kexa_postgres_user"
+    password: "my_postgres_password"
+    ssl_mode: "disable"
+
+
+# postgres
+postgresql:
+  image:
+    tag: "15.0.0"
+  livenessProbe:
+    initialDelaySeconds: 200
+  readinessProbe:
+    initialDelaySeconds: 200
+  host: my-postgresql.kexa.svc.cluster.local
+  fullnameOverride: "my-postgresql"
+  connectionString: "postgresql://kexa_postgres_user:my_postgres_password@my-postgresql.kexa.svc.cluster.local:5432/kexa_export_database"
+  auth:
+    postgresPassword: my_postgres_password
+    username: kexa_postgres_user
+    password: my_postgres_password
+    database: kexa_export_database
+  persistence:
+    enabled: true
+    size: 10Gi
+  primary:
+    service:
+      port: 5432
+```
