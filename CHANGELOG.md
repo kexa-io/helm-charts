@@ -1,3 +1,11 @@
+## [2.0.3](https://github.com/kexa-io/helm-charts/compare/v2.0.2...v2.0.3) (2024-09-27)
+
+
+### Bug Fixes
+
+* update readme ([31839e9](https://github.com/kexa-io/helm-charts/commit/31839e9ae8991e3d56e0009cf8b000a3d31f0eae))
+* values doc & more docs ([c37da31](https://github.com/kexa-io/helm-charts/commit/c37da31b9d29dbd72e039ac6d1b112d3bede5a8a))
+
 ## [2.0.2](https://github.com/kexa-io/helm-charts/compare/v2.0.1...v2.0.2) (2024-09-27)
 
 
