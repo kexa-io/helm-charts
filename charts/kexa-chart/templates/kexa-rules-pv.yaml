@@ -11,6 +11,6 @@ spec:
     - ReadWriteOnce
   hostPath:
     path: {{ .Values.hostConfigPath }}
-  storageClassName: {{ .Values.appname }}-rules-storage-class
+  storageClassName: {{ .Values.rulesPvcStorageClass }}
   persistentVolumeReclaimPolicy: Delete
 {{- end }}

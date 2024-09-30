@@ -147,6 +147,7 @@ namespace: kexa
 hostConfigPath: /mnt/host/c/your/path/to/tmpconfig
 hostConfigFolder: tmpconfig
 uselocalRules: false
+rulesPvcStorageClass: standard
 
 # kubernetes addon
 kubernetesAddon:
