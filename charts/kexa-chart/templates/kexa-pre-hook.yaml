@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.appname }}-kexa-pre-hook
+  namespace: {{ .Values.namespace }}
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-delete-policy": before-hook-creation
+spec:
+  template:
+    spec:
+      serviceAccountName: {{ .Values.appname }}-hook-service-account
+      containers:
+        - name: download-config-and-create-secret
+          image: alpine:latest
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              apk add --no-cache curl kubectl
+              
+              if kubectl get secret kexa-configuration-secret 2>/dev/null; then
+                  echo "Error: Secret 'kexa-configuration-secret' already exists."
+              else
+                curl -L -o /tmp/default.json https://raw.githubusercontent.com/kexa-io/helm-charts/main/default.json
+                if [ $? -ne 0 ]; then
+                  echo "Error: Failed to download the file."
+                  exit 1
+                fi
+                
+                if [ ! -f /tmp/default.json ]; then
+                  echo "Error: File '/tmp/default.json' failed to download."
+                  exit 1
+                fi
+                ls -l /tmp/
+                kubectl create secret generic kexa-configuration-secret --from-file=default.json=/tmp/default.json -n {{ .Values.namespace }}
+              fi
+      restartPolicy: Never
+  backoffLimit: 0
