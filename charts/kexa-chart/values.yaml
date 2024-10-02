@@ -4,7 +4,7 @@ namespace: kexa
 hostConfigPath: /mnt/host/c/your/path/to/tmpconfig
 hostConfigFolder: tmpconfig
 uselocalRules: false
-rulesPvcStorageClass: standard
+rulesPvcStorageClass: default
 
 kubernetesAddon:
   enabled: true
@@ -58,17 +58,21 @@ postgresql:
     enabled: true
     size: 10Gi
 
-grafana.ini:
-  database:
-    type: "postgres"
-    host: "my-postgresql.kexa.svc.cluster.local"
-    name: "kexa_export_database"
-    user: "kexa_postgres_user"
-    password: "my_postgres_password"
-    ssl_mode: "disable"
-
-
 grafana:
+  env:
+    GF_SECURITY_ALLOW_EMBEDDING: true
+    GF_SECURITY_COOKIE_SECURE: false
+  server:
+    domain: localhost
+    root_url: http://localhost:8082/
+    enable_cors: true
+  service:
+    port: 8082
+    targetPort: 3000
+  admin:
+    existingSecret: "kexa-grafana-admin-secret"
+    userKey: admin-user
+    passwordKey: admin-password
   config:
     grafana.ini:
       dashboards:
