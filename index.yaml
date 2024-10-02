@@ -55,6 +55,23 @@ entries:
   kexa:
   - apiVersion: v2
     appVersion: 1.16.4
+    created: "2024-10-02T12:44:40.941225336Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.0.0
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 8.5.1
+    description: A Helm chart that installs PostgreSQL and Grafana
+    digest: 9b35d4a5595da10982b820e373dfbf7c0a08298945bfc06215837ff62e281b3c
+    icon: https://kexa.io/kexa-no-background-color.png
+    name: kexa
+    urls:
+    - https://github.com/kexa-io/helm-charts/releases/download/kexa-2.0.5/kexa-2.0.5.tgz
+    version: 2.0.5
+  - apiVersion: v2
+    appVersion: 1.16.4
     created: "2024-09-30T07:37:51.081482016Z"
     dependencies:
     - name: postgresql
@@ -189,4 +206,4 @@ entries:
     urls:
     - https://github.com/kexa-io/helm-charts/releases/download/kexa-1.4.2/kexa-1.4.2.tgz
     version: 1.4.2
-generated: "2024-09-30T07:37:51.081524986Z"
+generated: "2024-10-02T12:44:40.941262716Z"
