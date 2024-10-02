@@ -20,27 +20,10 @@ a specific credential type, described below.
 Refer to the official Kexa documentation to learn more about addons authentication
 and Kexa configuration.
 
-To automatically be connected to the Postgres database deployed with Helm chart, you'll need
-the following save addon in your "_default.json_":
-```json
-    "save": [
-        {
-            "type": "postgres",
-            "name": "Postgres local cluster",
-            "urlName": "POSTGRES_STRING",
-            "description": "Database to save the data (local cluster)"
-        }
-    ]
-```
 
 *Create your Grafana admin user*
 ```bash
 kubectl create secret generic kexa-grafana-admin-secret --from-literal=admin-user=admin --from-literal=admin-password=strongpassword -n kexa
-```
-
-*Upload your Kexa configuration (default.json)*
-```bash
-kubectl create secret generic kexa-configuration-secret --from-file=default.json=default.json -n kexa
 ```
 
 *Upload your environment file (for most addons credentials)*

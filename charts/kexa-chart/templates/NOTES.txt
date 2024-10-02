@@ -1,22 +1,17 @@
 ------ NOTES -------
 
-#### Postgres ####
 
-# Linux: Get & decode postgres password
-kubectl get secret -n kexa my-postgresql -o jsonpath="{.data.postgres-password}" | base64 --decode ; echo
+#### Kexa Logs (using Kubernetes cronjob) ####
 
-# Windows: Get postgres password
-kubectl get secret --namespace kexa my-postgresql -o jsonpath="{.data.postgres-password}"
-
-# Windows: Decode hashed Postgres password
-[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YOUR_HASHED_PASSWORD_HERE"))
-
+# Find logs from cronjob
+kubectl get jobs
+kubectl logs jobs/kexa-helm-job-XXXXXX -f
 
 
 #### Grafana Dashboard ####
 
 # Forwarding port
-kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80 -n kexa
+kubectl port-forward svc/YOUR-YOUR_RELEASE_NAME-grafana 8082:8082 -n kexa
 
 # Login with the credentials you created as Kubernetes secret.
 # All dashboards and database connection to Postgres are already set 
@@ -30,10 +25,5 @@ kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80 -n kexa
 # Login
 With admin/admin
 
-#### Kexa Logs ####
-
-# Find logs from cronjob
-kubectl get jobs
-kubectl logs jobs/kexa-helm-job-XXXXXX -f
 
 ---------------------
