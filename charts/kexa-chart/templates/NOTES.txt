@@ -15,19 +15,10 @@ kubectl get secret --namespace kexa my-postgresql -o jsonpath="{.data.postgres-p
 
 #### Grafana Dashboard ####
 
-# Linux: Get & decode Grafana password
-kubectl get secret -n kexa kexa-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
-
-# Windows: Get Grafana's hashed password
-kubectl get secret --namespace kexa YOUR_RELEASE_NAME-grafana -o jsonpath="{.data.admin-password}"
-
-# Windows: Decode hashed Grafana password
-[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("YOUR_HASHED_PASSWORD_HERE"))
-
 # Forwarding port
 kubectl port-forward svc/YOUR_RELEASE_NAME-grafana 8080:80 -n kexa
 
-# Login with 'admin' and password you got
+# Login with the credentials you created as Kubernetes secret.
 # All dashboards and database connection to Postgres are already set 
 
 

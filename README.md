@@ -33,6 +33,11 @@ the following save addon in your "_default.json_":
     ]
 ```
 
+*Create your Grafana admin user*
+```bash
+kubectl create secret generic kexa-grafana-admin-secret --from-literal=admin-user=admin --from-literal=admin-password=strongpassword -n kexa
+```
+
 *Upload your Kexa configuration (default.json)*
 ```bash
 kubectl create secret generic kexa-configuration-secret --from-file=default.json=default.json -n kexa
