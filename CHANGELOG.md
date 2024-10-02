@@ -1,3 +1,11 @@
+## [2.0.5](https://github.com/kexa-io/helm-charts/compare/v2.0.4...v2.0.5) (2024-10-02)
+
+
+### Bug Fixes
+
+* add default config ([4af65d2](https://github.com/kexa-io/helm-charts/commit/4af65d24a06fe1d60e38f385689661c00c9e8c28))
+* Grafana admin secret ([94d9db2](https://github.com/kexa-io/helm-charts/commit/94d9db2853fd0603ff3128864b5b69f547b1f2f5))
+
 ## [2.0.4](https://github.com/kexa-io/helm-charts/compare/v2.0.3...v2.0.4) (2024-09-30)
 
 
