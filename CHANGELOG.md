@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/kexa-io/helm-charts/compare/v2.0.5...v2.0.6) (2024-10-02)
+
+
+### Bug Fixes
+
+* auto-download & upload default.json ([d9171ec](https://github.com/kexa-io/helm-charts/commit/d9171ec35f0ee6cf07bd0beefbf85062d5950aa6))
+
 ## [2.0.5](https://github.com/kexa-io/helm-charts/compare/v2.0.4...v2.0.5) (2024-10-02)
 
 
