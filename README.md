@@ -91,7 +91,7 @@ uselocalRules: true
 or when installing the chart
 
 ```yaml
- helm install kexa-helm kexa/kexa -n kexa --set hostConfigPath="/mnt/host/c/your/path/to/tmpconfig" --set uselocalRules="true"
+ helm install YOUR_RELEASE_NAME kexa/kexa -n kexa --set hostConfigPath="/mnt/host/c/your/path/to/tmpconfig" --set uselocalRules="true"
 ```
 
 ## Install the chart

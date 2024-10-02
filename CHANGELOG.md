@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/kexa-io/helm-charts/compare/v2.0.3...v2.0.4) (2024-09-30)
+
+
+### Bug Fixes
+
+* storage class to standard ([067633f](https://github.com/kexa-io/helm-charts/commit/067633fff1c82fc26668321be50fa1741d48a962))
+
 ## [2.0.3](https://github.com/kexa-io/helm-charts/compare/v2.0.2...v2.0.3) (2024-09-27)
 
 
