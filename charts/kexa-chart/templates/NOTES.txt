@@ -3,27 +3,32 @@
 
 #### Kexa Logs (using Kubernetes cronjob) ####
 
-# Find logs from cronjob
+1- Find logs from cronjob
+
 kubectl get jobs
 kubectl logs jobs/kexa-helm-job-XXXXXX -f
 
 
+
 #### Grafana Dashboard ####
 
-# Forwarding port
+1- Forwarding port
+
 kubectl port-forward svc/YOUR-YOUR_RELEASE_NAME-grafana 8082:8082 -n kexa
 
-# Login with the credentials you created as Kubernetes secret.
-# All dashboards and database connection to Postgres are already set 
+2- Login with the credentials you created as Kubernetes secret.
+
+All dashboards and database connection to Postgres are already set 
+
 
 
 ### Cronicle dashboard (scheduling) ###
 
-# Forwarding port
+1- Forwarding port
+
 kubectl port-forward svc/kexa-helm-cronicle-svc 3012:80 -n kexa
 
-# Login
-With admin/admin
+2- Login to Cronicle dashboard with: admin/admin
 
 
 ---------------------
