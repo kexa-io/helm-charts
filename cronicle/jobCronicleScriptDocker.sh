@@ -39,6 +39,7 @@ echo "Created temp container."
 echo "Copying shared directory to temp container..."
 docker cp "$SHARED_DIR" temp_container:/app/
 docker cp /app/config temp_container:/app/
+echo "INTERFACE_CONFIGURATION_ENABLED='true'" >> /app/.env
 docker cp /app/.env temp_container:/app/.env
 docker cp /tmp/$KUBERNETES_CONFIG_FOLDER/* temp_container:/app/
 
