@@ -1,3 +1,10 @@
+## [2.0.7](https://github.com/kexa-io/helm-charts/compare/v2.0.6...v2.0.7) (2024-10-24)
+
+
+### Bug Fixes
+
+* update dind script ([65c3015](https://github.com/kexa-io/helm-charts/commit/65c3015233381602d0147dc484807107fe039068))
+
 ## [2.0.6](https://github.com/kexa-io/helm-charts/compare/v2.0.5...v2.0.6) (2024-10-02)
 
 
