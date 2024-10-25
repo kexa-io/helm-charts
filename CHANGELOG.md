@@ -1,3 +1,10 @@
+## [2.0.8](https://github.com/kexa-io/helm-charts/compare/v2.0.7...v2.0.8) (2024-10-25)
+
+
+### Bug Fixes
+
+* update job cronicle ([e86de16](https://github.com/kexa-io/helm-charts/commit/e86de16c8ee1be530a00b7a6ce8ee4e627a18dd4))
+
 ## [2.0.7](https://github.com/kexa-io/helm-charts/compare/v2.0.6...v2.0.7) (2024-10-24)
 
 
